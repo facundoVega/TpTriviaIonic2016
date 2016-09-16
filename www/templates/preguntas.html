@@ -1,0 +1,27 @@
+<ion-view title="Preguntas" id="page1">
+   
+        <div id="preguntas-markdown8" style="color:#000000;">
+            <p><h1>{{misPreguntas[0].pregunta}}</h1>
+                
+            </p>
+        </div>
+        <div></div>
+        <div>
+            <button id="opcion1" class="button button-full button-positive" onclick="Boton(this.id)">
+                {{misPreguntas[0].opcion1}}
+            </button>
+        </div>
+        <div>
+            <button id="opcion2" class="button button-full button-positive" onclick="Boton(this.id)">
+                {{misPreguntas[0].opcion2}}
+            </button>
+        </div>
+        <div>
+            <button id="opcion3" class="button button-full button-positive" onclick="Boton(this.id)">
+                {{misPreguntas[0].opcion3}}
+            </button>
+        </div>
+
+        <h1>{{respuesta.resultado}}</h1>
+    </ion-content>
+</ion-view>
