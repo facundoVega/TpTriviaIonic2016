@@ -23,10 +23,19 @@ function ($scope, $stateParams, $timeout ){
 
   });
 	$scope.respuesta = {};
-	function Boton(id)
-	{
 
-		console.log(id);
+	$scope.Boton = function(boton_apretado)
+	{
+		if($scope.misPreguntas[0].correcta == boton_apretado )
+		{
+
+			$scope.respuesta.resultado = "RESPUESTA CORRECTA";
+		}
+		else
+		{
+
+			$scope.respuesta.resultado= "RESPUESTA INCORRECTA"
+		}
 	}
 }])
    
