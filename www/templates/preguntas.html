@@ -1,27 +1,34 @@
 <ion-view title="Preguntas" id="page1">
-   
+    <ion-content padding="true" class="has-header">
         <div id="preguntas-markdown8" style="color:#000000;">
-            <p><h1>{{misPreguntas[0].pregunta}}</h1>
+            </br></br><p><h1>{{pregunta.preg.pregunta}}</h1>
                 
             </p>
         </div>
         <div></div>
         <div>
-            <button  class="button button-full button-positive" ng-click="Boton('opcion1')">
-                {{misPreguntas[0].opcion1}}
+            <button id="boton1"  class="button button-full button-positive" ng-click="Boton('opcion1')">
+                {{pregunta.preg.opcion1}}
             </button>
         </div>
         <div>
-            <button  class="button button-full button-positive" ng-click="Boton('opcion2')">
-                {{misPreguntas[0].opcion2}}
+            <button id="boton2"  class="button button-full button-positive" ng-click="Boton('opcion2')">
+                {{pregunta.preg.opcion2}}
             </button>
+           
         </div>
         <div>
-            <button  class="button button-full button-positive" ng-click="Boton('opcion3')">
-                {{misPreguntas[0].opcion3}}
+            <button id="boton3" class="button button-full button-positive" ng-click="Boton('opcion3')">
+                {{pregunta.preg.opcion3}}
             </button>
+            <button id="btnProxima"  class="button button-full button-positive" ng-click="Proxima()"> 
+                Proxima
+            </button>
+         
         </div>
 
         <h1>{{respuesta.resultado}}</h1>
+       
+
     </ion-content>
 </ion-view>
