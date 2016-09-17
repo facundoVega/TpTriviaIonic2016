@@ -1,9 +1,9 @@
 angular.module('app.controllers', [])
   
-.controller('preguntasCtrl', ['$scope', '$stateParams','$timeout','$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('preguntasCtrl', ['$scope', '$stateParams','$timeout', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $timeout, $state){
+function ($scope, $stateParams, $timeout ){
 
 	$scope.misPreguntas = [];
 	var puntaje =0;
@@ -20,9 +20,9 @@ function ($scope, $stateParams, $timeout, $state){
     console.log(aleatorio);
     $scope.pregunta = {};
     $scope.pregunta.preg = $scope.misPreguntas[0];
-   
 
 
+    console.log($scope.misPreguntas);
     
 
 });
@@ -79,8 +79,7 @@ function ($scope, $stateParams, $timeout, $state){
 			$("#boton3").show();
 			$scope.respuesta.resultado ="";
 		}
-
-	
+	}
 
 
 }])
