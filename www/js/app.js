@@ -5,9 +5,13 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives','app.services',])
+angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives','app.services','ngCordova'])
 
 .run(function($ionicPlatform) {
+
+
+
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -19,5 +23,23 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+
+    if( window.plugins && window.plugins.NativeAudio ) 
+    {
+          window.plugins.NativeAudio.preloadSimple( 'sonido1', 'audio/comun.mp3', function(msg){
+        }, function(msg){
+            console.log( 'error: ' + msg );
+        });
+
+        window.plugins.NativeAudio.preloadSimple( 'sonido2', 'audio/correcta.mp3', function(msg){
+        }, function(msg){
+            console.log( 'error: ' + msg );
+        });
+
+    }
+
+
+
   });
 })

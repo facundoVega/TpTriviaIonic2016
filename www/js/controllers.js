@@ -1,9 +1,9 @@
 angular.module('app.controllers', [])
   
-.controller('preguntasCtrl', ['$scope', '$stateParams','$timeout', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('preguntasCtrl', ['$scope', '$stateParams','$timeout','$cordovaVibration','$cordovaNativeAudio', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $timeout ){
+function ($scope, $stateParams, $timeout, $cordovaVibration, $cordovaNativeAudio ){
 
 	$scope.misPreguntas = [];
 	var puntaje =0;
@@ -37,17 +37,21 @@ function ($scope, $stateParams, $timeout ){
 
 	$scope.Boton = function(boton_apretado)
 	{
+
+		
 		console.log(boton_apretado);
 		if($scope.misPreguntas[contadorPreguntas].correcta == boton_apretado )
 		{
+			$cordovaNativeAudio.play('sonido1');
 
 			$scope.respuesta.resultado = "RESPUESTA CORRECTA";
 			puntaje = puntaje+100;
 		}
 		else
 		{
-
+			$cordovaNativeAudio.play('sonido2');
 			$scope.respuesta.resultado= "RESPUESTA INCORRECTA"
+			
 		}
 
 
@@ -62,6 +66,14 @@ function ($scope, $stateParams, $timeout ){
 
 	$scope.Proxima = function()
 	{
+		try
+		{
+			 $cordovaVibration.vibrate(100);
+		}
+		catch(err)
+		{
+
+		}
 		contadorPreguntas++;
 		$scope.pregunta.preg = $scope.misPreguntas[contadorPreguntas];
 		
