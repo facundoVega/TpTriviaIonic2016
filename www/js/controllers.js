@@ -10,24 +10,48 @@ function ($scope, $stateParams, $timeout, $cordovaVibration, $cordovaNativeAudio
 	var messagesRef = new Firebase('https://miapp-8f9a6.firebaseio.com');
 
 	
+	var flag = 0;
 
 	messagesRef.on('child_added', function (snapshot) {
 	$timeout(function(){
 
     var message = snapshot.val();
     $scope.misPreguntas.push(message);
-    var aleatorio = Math.floor(Math.random() * (3 - 0)) + 0;
-    console.log(aleatorio);
-    $scope.pregunta = {};
-    $scope.pregunta.preg = $scope.misPreguntas[0];
-
-
-    console.log($scope.misPreguntas);
     
+   // console.log(aleatorio);
+    $scope.pregunta = {};
+   	
 
+    flag++;
+
+
+    //Una vez cargada todas las preguntas del firebase
+    //ordeno el array aleatoriamente.
+
+    if(flag == 3)
+    {
+    	var aleatorio1 = Math.floor(Math.random() * (3 - 0)) + 0;
+    	var auxPreg = $scope.misPreguntas[0];
+    	$scope.misPreguntas[0] = $scope.misPreguntas[aleatorio1];
+    	$scope.misPreguntas[aleatorio1] = auxPreg;
+    }
+    
+    $scope.pregunta.preg = $scope.misPreguntas[0];
 });
 
   });
+	 
+	//Cambio el orden del array para que sea aleatorio
+
+
+	var aleatorio1 = Math.floor(Math.random() * (3 - 0)) + 0;
+	var auxPreg = $scope.misPreguntas[0];
+	//$scope.misPreguntas[0] = $scope.misPreguntas[1];
+	//$scope.misPreguntas[aleatorio1] = auxPreg;
+
+	
+
+
 	$scope.respuesta = {};
 	$scope.respuesta.resultado="";
 	$scope.activado = {};
@@ -40,18 +64,26 @@ function ($scope, $stateParams, $timeout, $cordovaVibration, $cordovaNativeAudio
 
 		
 		console.log(boton_apretado);
-		if($scope.misPreguntas[contadorPreguntas].correcta == boton_apretado )
+		try
 		{
-			$cordovaNativeAudio.play('sonido1');
+			if($scope.misPreguntas[contadorPreguntas].correcta == boton_apretado )
+			{
+				$scope.respuesta.resultado = "RESPUESTA CORRECTA";
+				puntaje = puntaje+100;
+				$cordovaNativeAudio.play('sonido1');
 
-			$scope.respuesta.resultado = "RESPUESTA CORRECTA";
-			puntaje = puntaje+100;
+				
+			}
+			else
+			{
+				$cordovaNativeAudio.play('sonido2');
+				$scope.respuesta.resultado= "RESPUESTA INCORRECTA"
+				
+			}
 		}
-		else
+		catch(err)
 		{
-			$cordovaNativeAudio.play('sonido2');
-			$scope.respuesta.resultado= "RESPUESTA INCORRECTA"
-			
+			console.log("sono");
 		}
 
 
