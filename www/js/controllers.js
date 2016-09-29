@@ -44,9 +44,7 @@ function ($scope, $stateParams, $timeout, $cordovaVibration, $cordovaNativeAudio
 
 	//Cambio el orden del array para que sea aleatorio
 
-	$scope.valores = {};
-	$scope.valores.nombre = $stateParams.name; 
-	console.log($scope.valores.nombre);
+
 
 	var aleatorio1 = Math.floor(Math.random() * (3 - 0)) + 0;
 	var auxPreg = $scope.misPreguntas[0];
@@ -120,7 +118,16 @@ function ($scope, $stateParams, $timeout, $cordovaVibration, $cordovaNativeAudio
 		{
 			$scope.respuesta.resultado = "YA RESPONDIO TODAS SUS PREGUNTAS SU PUNTAJE ES " + puntaje;
 			$("#btnProxima").hide();
-			//GUARDO EN FIREBASE.
+			
+			//Guardo en firebase el nombre de usuario y el puntaje.
+			var fireUsuarios = new Firebase('https://miapp-8f9a6.firebaseio.com/usuarios');
+			var name = $stateParams.name;
+			var score = puntaje;
+
+			fireUsuarios.push({usuario:name, puntaje:score});
+
+
+
 		}
 		else
 		{
