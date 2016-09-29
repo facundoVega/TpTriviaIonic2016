@@ -18,7 +18,7 @@ function ($scope, $stateParams, $timeout, $cordovaVibration, $cordovaNativeAudio
     var message = snapshot.val();
     $scope.misPreguntas.push(message);
     
-   // console.log(aleatorio);
+ 
     $scope.pregunta = {};
    	
 
@@ -41,8 +41,12 @@ function ($scope, $stateParams, $timeout, $cordovaVibration, $cordovaNativeAudio
 
   });
 	 
+
 	//Cambio el orden del array para que sea aleatorio
 
+	$scope.valores = {};
+	$scope.valores.nombre = $stateParams.name; 
+	console.log($scope.valores.nombre);
 
 	var aleatorio1 = Math.floor(Math.random() * (3 - 0)) + 0;
 	var auxPreg = $scope.misPreguntas[0];
@@ -112,10 +116,11 @@ function ($scope, $stateParams, $timeout, $cordovaVibration, $cordovaNativeAudio
 		$scope.pregunta.preg = $scope.misPreguntas[contadorPreguntas];
 		
 
-		if(contadorPreguntas == $scope.misPreguntas.length)
+		if(contadorPreguntas == 3)
 		{
 			$scope.respuesta.resultado = "YA RESPONDIO TODAS SUS PREGUNTAS SU PUNTAJE ES " + puntaje;
 			$("#btnProxima").hide();
+			//GUARDO EN FIREBASE.
 		}
 		else
 		{
@@ -157,14 +162,19 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('menuCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('menuCtrl', ['$scope', '$stateParams', '$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+function ($scope, $stateParams, $state) {
 
 	$scope.valores = {};
 	$scope.valores.nombre = $stateParams.name; 
-	
 
+	
+	$scope.IrPreguntas = function()
+	{
+		console.log($stateParams.name);
+		$state.go('preguntas', {'name': $scope.valores.nombre});
+	}
 }])
  

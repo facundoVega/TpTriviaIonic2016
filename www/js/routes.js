@@ -11,7 +11,7 @@ angular.module('app.routes', [])
   
 
       .state('preguntas', {
-    url: '/page1',
+    url: '/page1/:name',
     templateUrl: 'templates/preguntas.html',
     controller: 'preguntasCtrl'
   })
