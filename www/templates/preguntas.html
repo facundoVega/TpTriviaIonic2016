@@ -1,5 +1,5 @@
 <ion-view title="Preguntas" id="page1">
-   <ion-content padding="true" class="has-header">
+   <!--<ion-content padding="true" class="has-header">--><ion-content padding="true" id="imgFondo" style="background: url(img/OEAVLOOBRBCceyMEGVc1_guazon.jpg) no-repeat center;background-size:cover;" class="has-header">
         <div id="preguntas-markdown8" style="color:#000000;">
           
 
@@ -30,5 +30,19 @@
         </div>
 
         <h1>{{respuesta.resultado}}</h1>
+        <div id="tablaUsuarios">
+            <h1>USUARIOS Y SUS PUNTAJES</h1></br>
+
+            <div ng-repeat="usuarios in misUsuarios">
+                <h3 align="center">{{usuarios.usuario}} {{usuarios.puntaje}} </h3>
+            </div> 
+              
+        
+         
+
+        </div>
+      
+
+
     </ion-content>
 </ion-view>

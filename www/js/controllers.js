@@ -51,8 +51,8 @@ function ($scope, $stateParams, $timeout, $cordovaVibration, $cordovaNativeAudio
 	//$scope.misPreguntas[0] = $scope.misPreguntas[1];
 	//$scope.misPreguntas[aleatorio1] = auxPreg;
 
-	
-
+	$('#imgFondo').attr("style", "");
+	$("#tablaUsuarios").hide();
 
 	$scope.respuesta = {};
 	$scope.respuesta.resultado="";
@@ -116,6 +116,8 @@ function ($scope, $stateParams, $timeout, $cordovaVibration, $cordovaNativeAudio
 
 		if(contadorPreguntas == 3)
 		{
+			$scope.misUsuarios = [];
+
 			$scope.respuesta.resultado = "YA RESPONDIO TODAS SUS PREGUNTAS SU PUNTAJE ES " + puntaje;
 			$("#btnProxima").hide();
 			
@@ -126,7 +128,20 @@ function ($scope, $stateParams, $timeout, $cordovaVibration, $cordovaNativeAudio
 
 			fireUsuarios.push({usuario:name, puntaje:score});
 
+			//Leo de firebase:
+			fireUsuarios.on('child_added', function(valor){
+				$timeout(function(){
 
+					var usuario = valor.val();
+					$scope.misUsuarios.push(usuario);
+				});
+
+
+
+			});
+
+			$('#imgFondo').attr("style", "background: url(img/OEAVLOOBRBCceyMEGVc1_guazon.jpg) no-repeat center;background-size:cover;");
+			$("#tablaUsuarios").show();
 
 		}
 		else
