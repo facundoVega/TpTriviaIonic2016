@@ -63,11 +63,11 @@ function ($scope, $stateParams, $timeout, $cordovaVibration, $cordovaNativeAudio
 	{
 
 		
-		console.log(boton_apretado);
 		try
 		{
 			if($scope.misPreguntas[contadorPreguntas].correcta == boton_apretado )
 			{
+				
 				$scope.respuesta.resultado = "RESPUESTA CORRECTA";
 				puntaje = puntaje+100;
 				$cordovaNativeAudio.play('sonido1');
@@ -83,6 +83,7 @@ function ($scope, $stateParams, $timeout, $cordovaVibration, $cordovaNativeAudio
 		}
 		catch(err)
 		{
+
 			console.log("sono");
 		}
 
@@ -90,9 +91,10 @@ function ($scope, $stateParams, $timeout, $cordovaVibration, $cordovaNativeAudio
 
 		
 		$("#btnProxima").show();
-		$("#boton1").hide();
-		$("#boton2").hide();
-		$("#boton3").hide();
+
+		$("#opcion1").hide();
+		$("#opcion2").hide();
+		$("#opcion3").hide();
 		
 	}
 
@@ -118,9 +120,9 @@ function ($scope, $stateParams, $timeout, $cordovaVibration, $cordovaNativeAudio
 		else
 		{
 			$("#btnProxima").hide();
-			$("#boton1").show();
-			$("#boton2").show();
-			$("#boton3").show();
+			$("#opcion1").show();
+			$("#opcion2").show();
+			$("#opcion3").show();
 			$scope.respuesta.resultado ="";
 		}
 	}
